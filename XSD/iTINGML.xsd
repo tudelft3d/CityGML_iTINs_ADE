@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml" xmlns:igml="http://godzilla.bk.tudelft.nl/schemas/iTIN_GML" elementFormDefault="qualified" targetNamespace="http://godzilla.bk.tudelft.nl/schemas/iTIN_GML" version="3.1.1">
+  <import namespace="http://www.opengis.net/gml" schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/gml.xsd"/>
+  <!--XML Schema document created by ShapeChange - http://shapechange.net/-->
+  <element abstract="true" name="_iCompositeSurface" substitutionGroup="igml:_iSurface" type="igml:_iCompositeSurfaceType"/>
+  <complexType abstract="true" name="_iCompositeSurfaceType">
+    <complexContent>
+      <extension base="igml:_iSurfaceType">
+        <sequence/>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="_iCompositeSurfacePropertyType">
+    <sequence minOccurs="0">
+      <element ref="igml:_iCompositeSurface"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+  </complexType>
+  <element abstract="true" name="_iPointPrimitive" substitutionGroup="gml:_GeometricPrimitive" type="igml:_iPointPrimitiveType">
+    <annotation>
+      <documentation>_iPointPrimitive is the abstract head of the substitution group  for modelling all the point geometries.</documentation>
+    </annotation>
+  </element>
+  <complexType abstract="true" name="_iPointPrimitiveType">
+    <complexContent>
+      <extension base="gml:AbstractGeometricPrimitiveType">
+        <sequence/>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="_iPointPrimitivePropertyType">
+    <sequence minOccurs="0">
+      <element ref="igml:_iPointPrimitive"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+  </complexType>
+  <element abstract="true" name="_iSolid" substitutionGroup="gml:_GeometricPrimitive" type="igml:_iSolidType">
+    <annotation>
+      <documentation>_iSolid is the abstract head of the substitution group for all iSolid elements.</documentation>
+    </annotation>
+  </element>
+  <complexType abstract="true" name="_iSolidType">
+    <complexContent>
+      <extension base="gml:AbstractGeometricPrimitiveType">
+        <sequence/>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="_iSolidPropertyType">
+    <sequence minOccurs="0">
+      <element ref="igml:_iSolid"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+  </complexType>
+  <element abstract="true" name="_iSurface" substitutionGroup="gml:_GeometricPrimitive" type="igml:_iSurfaceType">
+    <annotation>
+      <documentation>_iSurface is the abstract head of the substitution group for all iSurface elements.</documentation>
+    </annotation>
+  </element>
+  <complexType abstract="true" name="_iSurfaceType">
+    <complexContent>
+      <extension base="gml:AbstractGeometricPrimitiveType">
+        <sequence/>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="_iSurfacePropertyType">
+    <sequence minOccurs="0">
+      <element ref="igml:_iSurface"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+  </complexType>
+  <element abstract="true" name="_iSurfacePrimitive" substitutionGroup="igml:_iSurface" type="igml:_iSurfacePrimitiveType">
+    <annotation>
+      <documentation>_iSurfacePrimitive is an abstract class for modelling individual surface elements (polygon and triangle).</documentation>
+    </annotation>
+  </element>
+  <complexType abstract="true" name="_iSurfacePrimitiveType">
+    <complexContent>
+      <extension base="igml:_iSurfaceType">
+        <sequence/>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="_iSurfacePrimitivePropertyType">
+    <sequence minOccurs="0">
+      <element ref="igml:_iSurfacePrimitive"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+  </complexType>
+  <element abstract="true" name="_iTinPrimitive" substitutionGroup="igml:_iSurface" type="igml:_iTinPrimitiveType">
+    <annotation>
+      <documentation>_iTinPrimitive is an abstract class for modelling TIN representations (iTS, iStars, iTriStrip).</documentation>
+    </annotation>
+  </element>
+  <complexType abstract="true" name="_iTinPrimitiveType">
+    <complexContent>
+      <extension base="igml:_iSurfaceType">
+        <sequence/>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="_iTinPrimitivePropertyType">
+    <sequence minOccurs="0">
+      <element ref="igml:_iTinPrimitive"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+  </complexType>
+  <element name="iCompositeSolid" substitutionGroup="igml:_iSolid" type="igml:iCompositeSolidType"/>
+  <complexType name="iCompositeSolidType">
+    <complexContent>
+      <extension base="igml:_iSolidType">
+        <sequence>
+          <element minOccurs="0" name="id" type="ID"/>
+          <element maxOccurs="unbounded" name="iSolidMember" type="igml:iSolidPropertyType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="iCompositeSolidPropertyType">
+    <sequence minOccurs="0">
+      <element ref="igml:iCompositeSolid"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+  </complexType>
+  <element name="iLine" substitutionGroup="gml:_Curve" type="igml:iLineType">
+    <annotation>
+      <documentation>An iLine (or an indexed Line) represents the geometry of a line segment (or curve).</documentation>
+    </annotation>
+  </element>
+  <complexType name="iLineType">
+    <complexContent>
+      <extension base="gml:AbstractCurveType">
+        <sequence>
+          <element minOccurs="0" name="id" type="ID"/>
+          <element name="iPoints" type="igml:iMultiPointPropertyType"/>
+          <element name="indexes" type="gml:integerList"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="iLinePropertyType">
+    <sequence minOccurs="0">
+      <element ref="igml:iLine"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+  </complexType>
+  <element name="iMultiPoint" substitutionGroup="gml:_GeometricAggregate" type="igml:iMultiPointType">
+    <annotation>
+      <documentation>An iMultiPoint is a collection of all the points  (i.e. vertices) of a surface.
+With iMultiPoint, it is possible to store points either as a collection of individual iPoint(s) or as iPointList.</documentation>
+    </annotation>
+  </element>
+  <complexType name="iMultiPointType">
+    <complexContent>
+      <extension base="gml:AbstractGeometricAggregateType">
+        <sequence>
+          <element maxOccurs="unbounded" name="iPointMember" type="igml:_iPointPrimitivePropertyType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="iMultiPointPropertyType">
+    <sequence minOccurs="0">
+      <element ref="igml:iMultiPoint"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+  </complexType>
+  <element name="iMultiSurface" substitutionGroup="gml:_GeometricAggregate" type="igml:iMultiSurfaceType">
+    <annotation>
+      <documentation>An iMultiSurface is a collection of surfaces (triangles/polygons) which can be disjoint, overlapping, touching, or even disconnected. With iMultiSurface, it is possible to store surface either as a collection of triangles or as a collection of polygons.</documentation>
+    </annotation>
+  </element>
+  <complexType name="iMultiSurfaceType">
+    <complexContent>
+      <extension base="gml:AbstractGeometricAggregateType">
+        <sequence>
+          <element minOccurs="0" name="id" type="ID"/>
+          <element name="iPoints" type="igml:iMultiPointPropertyType"/>
+          <element maxOccurs="unbounded" name="iSurfaceMember" type="igml:_iSurfacePrimitivePropertyType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="iMultiSurfacePropertyType">
+    <sequence minOccurs="0">
+      <element ref="igml:iMultiSurface"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+  </complexType>
+  <element name="iPoint" substitutionGroup="igml:_iPointPrimitive" type="igml:iPointType">
+    <annotation>
+      <documentation>An iPoint (or an indexed Point) represents the geometry of an individual point (or vertex). An iPoint is defined by a local ID and a coordinate tuple with x, y, z coordinate values of a point/vertex.</documentation>
+    </annotation>
+  </element>
+  <complexType name="iPointType">
+    <complexContent>
+      <extension base="igml:_iPointPrimitiveType">
+        <sequence>
+          <element name="id" type="integer">
+            <annotation>
+              <documentation>id specifies the local ID of an iPoint within a dataset.</documentation>
+            </annotation>
+          </element>
+          <element name="coordinates" type="gml:doubleList">
+            <annotation>
+              <documentation>coordinates specifies the x,y,z values of an iPoint.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="iPointPropertyType">
+    <sequence minOccurs="0">
+      <element ref="igml:iPoint"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+  </complexType>
+  <element name="iPointList" substitutionGroup="igml:_iPointPrimitive" type="igml:iPointListType">
+    <annotation>
+      <documentation>An iPointList (or an indexed Point List) is a list of all the points (or vertices) of a surface defined by space separated values of all the coordinates.</documentation>
+    </annotation>
+  </element>
+  <complexType name="iPointListType">
+    <complexContent>
+      <extension base="igml:_iPointPrimitiveType">
+        <sequence>
+          <element name="coordinates" type="gml:doubleList"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="iPointListPropertyType">
+    <sequence minOccurs="0">
+      <element ref="igml:iPointList"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+  </complexType>
+  <element name="iPolygon" substitutionGroup="igml:_iSurfacePrimitive" type="igml:iPolygonType">
+    <annotation>
+      <documentation>An iPolygon (or an indexed Polygon) represents the geometry of an individual polygon. An iPolygon is specified by the references to IDs of the (&gt;3) vertices of the polygon</documentation>
+    </annotation>
+  </element>
+  <complexType name="iPolygonType">
+    <complexContent>
+      <extension base="igml:_iSurfacePrimitiveType">
+        <sequence>
+          <element minOccurs="0" name="id" type="ID"/>
+          <element minOccurs="0" name="vertical" type="boolean"/>
+          <element name="indexes" type="gml:integerList"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="iPolygonPropertyType">
+    <sequence minOccurs="0">
+      <element ref="igml:iPolygon"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+  </complexType>
+  <element name="iPolygonSurface" substitutionGroup="igml:_iCompositeSurface" type="igml:iPolygonSurfaceType">
+    <annotation>
+      <documentation>iPolygonSurface is a type of _iCompositeSurface for representing topologically connected polygon surfaces. Points are represented by iMultiPoint and polygons are represented by igml:iPolygon(s) geometry.</documentation>
+    </annotation>
+  </element>
+  <complexType name="iPolygonSurfaceType">
+    <complexContent>
+      <extension base="igml:_iCompositeSurfaceType">
+        <sequence>
+          <element minOccurs="0" name="id" type="ID"/>
+          <element name="iPoints" type="igml:iMultiPointPropertyType"/>
+          <element maxOccurs="unbounded" name="iPolygonPatch" type="igml:iPolygonPropertyType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="iPolygonSurfacePropertyType">
+    <sequence minOccurs="0">
+      <element ref="igml:iPolygonSurface"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+  </complexType>
+  <element name="iSolid" substitutionGroup="igml:_iSolid" type="igml:iSolidType">
+    <annotation>
+      <documentation>iSolid is the representation for modelling solid objects in 3D. It is a type of _iSolid with exterior and interior of the solid modelled as a composite surface.The exterior shell and interior of the solid can be modelled either as a TIN or as polygonal surface.</documentation>
+    </annotation>
+  </element>
+  <complexType name="iSolidType">
+    <complexContent>
+      <extension base="igml:_iSolidType">
+        <sequence>
+          <element minOccurs="0" name="id" type="ID"/>
+          <element name="iExterior" type="igml:_iCompositeSurfacePropertyType"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="iInterior" type="igml:_iCompositeSurfacePropertyType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="iSolidPropertyType">
+    <sequence minOccurs="0">
+      <element ref="igml:iSolid"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+  </complexType>
+  <element name="iStars" substitutionGroup="igml:_iTinPrimitive" type="igml:iStarsType">
+    <annotation>
+      <documentation>An iStars is a collection of iStar elements defined for every vertex of a triangulated surface. For every vertex, an iStar stores an ordered list of IDs of the vertices incident to it. Every triangle incident to a vertex is represented by the ID of that vertex and the IDs of two consecutive vertices in the list.</documentation>
+    </annotation>
+  </element>
+  <complexType name="iStarsType">
+    <complexContent>
+      <extension base="igml:_iTinPrimitiveType">
+        <sequence>
+          <element minOccurs="0" name="id" type="ID"/>
+          <element maxOccurs="unbounded" name="iStar" type="gml:integerList"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="iStarsPropertyType">
+    <sequence minOccurs="0">
+      <element ref="igml:iStars"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+  </complexType>
+  <element name="iTIN" substitutionGroup="igml:_iCompositeSurface" type="igml:iTINType">
+    <annotation>
+      <documentation>iTIN is modelled as a type of _CompositeSurface for representing TINs, because TINs represent surfaces with disjoint, non-overlapping and topologically connected triangles.
+In iTIN, vertices are represented using iMultiPoint and the TIN surface can be represented using any of these three _iTinPrimitive types.</documentation>
+    </annotation>
+  </element>
+  <complexType name="iTINType">
+    <complexContent>
+      <extension base="igml:_iCompositeSurfaceType">
+        <sequence>
+          <element minOccurs="0" name="id" type="ID"/>
+          <element name="iTinPoints" type="igml:iMultiPointPropertyType"/>
+          <element maxOccurs="unbounded" name="iTinSurface" type="igml:_iTinPrimitivePropertyType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="iTINPropertyType">
+    <sequence minOccurs="0">
+      <element ref="igml:iTIN"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+  </complexType>
+  <element name="iTriStrip" substitutionGroup="igml:_iTinPrimitive" type="igml:iTriStripType">
+    <annotation>
+      <documentation>An iTriStrip is an indexed triangle strip defined by a collection of triangles by vertex references. A TriStrip provides the information needed to bind vertex attributes together and then organize those vertices into connected triangles. Each triangle described by the mesh has three vertices. The first triangle is formed from first, second, and third vertices. Each subsequent triangle is formed from the current vertex, reusing the previous two vertices.</documentation>
+    </annotation>
+  </element>
+  <complexType name="iTriStripType">
+    <complexContent>
+      <extension base="igml:_iTinPrimitiveType">
+        <sequence>
+          <element minOccurs="0" name="id" type="ID"/>
+          <element maxOccurs="unbounded" name="iTstrip" type="gml:integerList"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="iTriStripPropertyType">
+    <sequence minOccurs="0">
+      <element ref="igml:iTriStrip"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+  </complexType>
+  <element name="iTriangle" substitutionGroup="igml:_iSurfacePrimitive" type="igml:iTriangleType">
+    <annotation>
+      <documentation>An iTriangle (or an indexed Triangle) represents the geometry of an individual triangle. An iTriangle is specified by the references to IDs of the 3 vertices of the triangle.</documentation>
+    </annotation>
+  </element>
+  <complexType name="iTriangleType">
+    <complexContent>
+      <extension base="igml:_iSurfacePrimitiveType">
+        <sequence>
+          <element minOccurs="0" name="id" type="ID"/>
+          <element minOccurs="0" name="vertical" type="boolean"/>
+          <element name="indexes" type="gml:integerList"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="iTrianglePropertyType">
+    <sequence minOccurs="0">
+      <element ref="igml:iTriangle"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+  </complexType>
+  <element name="iTriangulatedSurface" substitutionGroup="igml:_iTinPrimitive" type="igml:iTriangulatedSurfaceType">
+    <annotation>
+      <documentation>An iTriangulatedSurface stores triangles either as a collection of individual iTriangle(s) or as iTriangleList.</documentation>
+    </annotation>
+  </element>
+  <complexType name="iTriangulatedSurfaceType">
+    <complexContent>
+      <extension base="igml:_iTinPrimitiveType">
+        <sequence>
+          <element minOccurs="0" name="id" type="ID"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="iTriangleList" type="gml:integerList"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="iTrianglePatch" type="igml:iTrianglePropertyType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="iTriangulatedSurfacePropertyType">
+    <sequence minOccurs="0">
+      <element ref="igml:iTriangulatedSurface"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+  </complexType>
+</schema>

@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:bldg="http://www.opengis.net/citygml/building/2.0" xmlns:core="http://www.opengis.net/citygml/2.0" xmlns:dem="http://www.opengis.net/citygml/relief/2.0" xmlns:gml="http://www.opengis.net/gml" xmlns:igml="http://godzilla.bk.tudelft.nl/schemas/iTIN_GML" xmlns:itin="http://godzilla.bk.tudelft.nl/schemas/iTINs_ADE" xmlns:luse="http://www.opengis.net/citygml/landuse/2.0" xmlns:tran="http://www.opengis.net/citygml/transportation/2.0" xmlns:veg="http://www.opengis.net/citygml/vegetation/2.0" xmlns:wtr="http://www.opengis.net/citygml/waterbody/2.0" elementFormDefault="qualified" targetNamespace="http://godzilla.bk.tudelft.nl/schemas/iTINs_ADE" version="0.1">
+  <import namespace="http://godzilla.bk.tudelft.nl/schemas/iTIN_GML" schemaLocation="http://godzilla.bk.tudelft.nl/schemas/iTIN_GML/iTINGML.xsd"/>
+  <import namespace="http://www.opengis.net/citygml/2.0" schemaLocation="http://schemas.opengis.net/citygml/2.0/cityGMLBase.xsd"/>
+  <import namespace="http://www.opengis.net/citygml/building/2.0" schemaLocation="http://schemas.opengis.net/citygml/building/2.0/building.xsd"/>
+  <import namespace="http://www.opengis.net/citygml/landuse/2.0" schemaLocation="http://schemas.opengis.net/citygml/landuse/2.0/landUse.xsd"/>
+  <import namespace="http://www.opengis.net/citygml/relief/2.0" schemaLocation="http://schemas.opengis.net/citygml/relief/2.0/relief.xsd"/>
+  <import namespace="http://www.opengis.net/citygml/transportation/2.0" schemaLocation="http://schemas.opengis.net/citygml/transportation/2.0/transportation.xsd"/>
+  <import namespace="http://www.opengis.net/citygml/vegetation/2.0" schemaLocation="http://schemas.opengis.net/citygml/vegetation/2.0/vegetation.xsd"/>
+  <import namespace="http://www.opengis.net/citygml/waterbody/2.0" schemaLocation="http://schemas.opengis.net/citygml/waterbody/2.0/waterBody.xsd"/>
+  <import namespace="http://www.opengis.net/gml" schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/gml.xsd"/>
+  <!--XML Schema document created by ShapeChange - http://shapechange.net/-->
+  <element abstract="true" name="_iAbstractBuilding" substitutionGroup="bldg:_AbstractBuilding" type="itin:_iAbstractBuildingType">
+    <annotation>
+      <documentation>It is an abstract class for describing the thematic and geometric attributes and the associations of iBuildings &amp; iBuildingParts till LOD3.</documentation>
+    </annotation>
+  </element>
+  <complexType abstract="true" name="_iAbstractBuildingType">
+    <complexContent>
+      <extension base="bldg:AbstractBuildingType">
+        <sequence>
+          <element minOccurs="0" name="lod1iSolid" type="igml:_iSolidPropertyType"/>
+          <element minOccurs="0" name="lod2iSolid" type="igml:_iSolidPropertyType"/>
+          <element minOccurs="0" name="lod3iSolid" type="igml:_iSolidPropertyType"/>
+          <element minOccurs="0" name="lod4iSolid" type="igml:_iSolidPropertyType"/>
+          <element minOccurs="0" name="lod0iTIN" type="igml:iTINPropertyType"/>
+          <element minOccurs="0" name="lod1iTIN" type="igml:iTINPropertyType"/>
+          <element minOccurs="0" name="lod2iTIN" type="igml:iTINPropertyType"/>
+          <element minOccurs="0" name="lod3iTIN" type="igml:iTINPropertyType"/>
+          <element minOccurs="0" name="lod0iPS" type="igml:iPolygonSurfacePropertyType"/>
+          <element minOccurs="0" name="lod1iPS" type="igml:iPolygonSurfacePropertyType"/>
+          <element minOccurs="0" name="lod2iPS" type="igml:iPolygonSurfacePropertyType"/>
+          <element minOccurs="0" name="lod3iPS" type="igml:iPolygonSurfacePropertyType"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="consistsOfiBP" type="itin:iBuildingPartPropertyType"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="iBoundedBy" type="itin:_iBoundarySurfacePropertyType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="_iAbstractBuildingPropertyType">
+    <sequence minOccurs="0">
+      <element ref="itin:_iAbstractBuilding"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+  </complexType>
+  <element abstract="true" name="_iBoundarySurface" substitutionGroup="core:_CityObject" type="itin:_iBoundarySurfaceType">
+    <annotation>
+      <documentation>An _iBoundarySurface is an abstract class which classifies surfaces bounding an _iAbstractBuilding,</documentation>
+    </annotation>
+  </element>
+  <complexType abstract="true" name="_iBoundarySurfaceType">
+    <complexContent>
+      <extension base="core:AbstractCityObjectType">
+        <sequence>
+          <element minOccurs="0" name="lod2iTIN" type="igml:iTINPropertyType"/>
+          <element minOccurs="0" name="lod3iTIN" type="igml:iTINPropertyType"/>
+          <element minOccurs="0" name="lod2iPS" type="igml:iPolygonSurfacePropertyType"/>
+          <element minOccurs="0" name="lod3iPS" type="igml:iPolygonSurfacePropertyType"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="iOpening" type="itin:_iOpeningPropertyType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="_iBoundarySurfacePropertyType">
+    <sequence minOccurs="0">
+      <element ref="itin:_iBoundarySurface"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+  </complexType>
+  <element abstract="true" name="_iOpening" substitutionGroup="core:_CityObject" type="itin:_iOpeningType">
+    <annotation>
+      <documentation>An _iOpening is an abstract class which classifies openings in an _AbstractBuilding,</documentation>
+    </annotation>
+  </element>
+  <complexType abstract="true" name="_iOpeningType">
+    <complexContent>
+      <extension base="core:AbstractCityObjectType">
+        <sequence>
+          <element minOccurs="0" name="lod3iTIN" type="igml:iTINPropertyType"/>
+          <element minOccurs="0" name="lod3iPS" type="igml:iPolygonSurfacePropertyType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="_iOpeningPropertyType">
+    <sequence minOccurs="0">
+      <element ref="itin:_iOpening"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+  </complexType>
+  <element name="iBuilding" substitutionGroup="itin:_iAbstractBuilding" type="itin:iBuildingType"/>
+  <complexType name="iBuildingType">
+    <complexContent>
+      <extension base="itin:_iAbstractBuildingType">
+        <sequence/>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="iBuildingPropertyType">
+    <sequence minOccurs="0">
+      <element ref="itin:iBuilding"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+  </complexType>
+  <element name="iBuildingPart" substitutionGroup="itin:_iAbstractBuilding" type="itin:iBuildingPartType"/>
+  <complexType name="iBuildingPartType">
+    <complexContent>
+      <extension base="itin:_iAbstractBuildingType">
+        <sequence/>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="iBuildingPartPropertyType">
+    <sequence minOccurs="0">
+      <element ref="itin:iBuildingPart"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+  </complexType>
+  <element name="iDoor" substitutionGroup="itin:_iOpening" type="itin:iDoorType">
+    <annotation>
+      <documentation>Type for doors in iBoundarySurface(s).</documentation>
+    </annotation>
+  </element>
+  <complexType name="iDoorType">
+    <complexContent>
+      <extension base="itin:_iOpeningType">
+        <sequence/>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="iDoorPropertyType">
+    <sequence minOccurs="0">
+      <element ref="itin:iDoor"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+  </complexType>
+  <element name="iGroundSurface" substitutionGroup="itin:_iBoundarySurface" type="itin:iGroundSurfaceType"/>
+  <complexType name="iGroundSurfaceType">
+    <complexContent>
+      <extension base="itin:_iBoundarySurfaceType">
+        <sequence/>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="iGroundSurfacePropertyType">
+    <sequence minOccurs="0">
+      <element ref="itin:iGroundSurface"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+  </complexType>
+  <element name="iLanduse" substitutionGroup="luse:LandUse" type="itin:iLanduseType">
+    <annotation>
+      <documentation>iLandUse is the class for describing land use in all LODs.</documentation>
+    </annotation>
+  </element>
+  <complexType name="iLanduseType">
+    <complexContent>
+      <extension base="luse:LandUseType">
+        <sequence>
+          <element minOccurs="0" name="lod0iTIN" type="igml:iTINPropertyType"/>
+          <element minOccurs="0" name="lod1iTIN" type="igml:iTINPropertyType"/>
+          <element minOccurs="0" name="lod2iTIN" type="igml:iTINPropertyType"/>
+          <element minOccurs="0" name="lod3iTIN" type="igml:iTINPropertyType"/>
+          <element minOccurs="0" name="lod4iTIN" type="igml:iTINPropertyType"/>
+          <element minOccurs="0" name="lod0iMS" type="igml:iMultiSurfacePropertyType"/>
+          <element minOccurs="0" name="lod1iMS" type="igml:iMultiSurfacePropertyType"/>
+          <element minOccurs="0" name="lod2iMS" type="igml:iMultiSurfacePropertyType"/>
+          <element minOccurs="0" name="lod3iMS" type="igml:iMultiSurfacePropertyType"/>
+          <element minOccurs="0" name="lod4iMS" type="igml:iMultiSurfacePropertyType"/>
+          <element minOccurs="0" name="lod0iPS" type="igml:iPolygonSurfacePropertyType"/>
+          <element minOccurs="0" name="lod1iPS" type="igml:iPolygonSurfacePropertyType"/>
+          <element minOccurs="0" name="lod2iPS" type="igml:iPolygonSurfacePropertyType"/>
+          <element minOccurs="0" name="lod3iPS" type="igml:iPolygonSurfacePropertyType"/>
+          <element minOccurs="0" name="lod4iPS" type="igml:iPolygonSurfacePropertyType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="iLandusePropertyType">
+    <sequence minOccurs="0">
+      <element ref="itin:iLanduse"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+  </complexType>
+  <element name="iPlantCover" substitutionGroup="veg:PlantCover" type="itin:iPlantCoverType">
+    <annotation>
+      <documentation>iPlantCover is the class for describing plantcover (vegetation) in all LODs.</documentation>
+    </annotation>
+  </element>
+  <complexType name="iPlantCoverType">
+    <complexContent>
+      <extension base="veg:PlantCoverType">
+        <sequence>
+          <element minOccurs="0" name="lod0iTIN" type="igml:iTINPropertyType"/>
+          <element minOccurs="0" name="lod1iTIN" type="igml:iTINPropertyType"/>
+          <element minOccurs="0" name="lod2iTIN" type="igml:iTINPropertyType"/>
+          <element minOccurs="0" name="lod3iTIN" type="igml:iTINPropertyType"/>
+          <element minOccurs="0" name="lod4iTIN" type="igml:iTINPropertyType"/>
+          <element minOccurs="0" name="lod0iPS" type="igml:iPolygonSurfacePropertyType"/>
+          <element minOccurs="0" name="lod1iPS" type="igml:iPolygonSurfacePropertyType"/>
+          <element minOccurs="0" name="lod2iPS" type="igml:iPolygonSurfacePropertyType"/>
+          <element minOccurs="0" name="lod3iPS" type="igml:iPolygonSurfacePropertyType"/>
+          <element minOccurs="0" name="lod4iPS" type="igml:iPolygonSurfacePropertyType"/>
+          <element minOccurs="0" name="lod0iMS" type="igml:iMultiSurfacePropertyType"/>
+          <element minOccurs="0" name="lod1iMS" type="igml:iMultiSurfacePropertyType"/>
+          <element minOccurs="0" name="lod2iMS" type="igml:iMultiSurfacePropertyType"/>
+          <element minOccurs="0" name="lod3iMS" type="igml:iMultiSurfacePropertyType"/>
+          <element minOccurs="0" name="lod4iMS" type="igml:iMultiSurfacePropertyType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="iPlantCoverPropertyType">
+    <sequence minOccurs="0">
+      <element ref="itin:iPlantCover"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+  </complexType>
+  <element name="iRoad" substitutionGroup="tran:Road" type="itin:iRoadType">
+    <annotation>
+      <documentation>iRoad is the class for describing roads in all LODs.</documentation>
+    </annotation>
+  </element>
+  <complexType name="iRoadType">
+    <complexContent>
+      <extension base="tran:RoadType">
+        <sequence>
+          <element minOccurs="0" name="lod0Line" type="igml:iLinePropertyType"/>
+          <element minOccurs="0" name="lod1iTIN" type="igml:iTINPropertyType"/>
+          <element minOccurs="0" name="lod2iTIN" type="igml:iTINPropertyType"/>
+          <element minOccurs="0" name="lod3iTIN" type="igml:iTINPropertyType"/>
+          <element minOccurs="0" name="lod4iTIN" type="igml:iTINPropertyType"/>
+          <element minOccurs="0" name="lod1iPS" type="igml:iPolygonSurfacePropertyType"/>
+          <element minOccurs="0" name="lod2iPS" type="igml:iPolygonSurfacePropertyType"/>
+          <element minOccurs="0" name="lod3iPS" type="igml:iPolygonSurfacePropertyType"/>
+          <element minOccurs="0" name="lod4iPS" type="igml:iPolygonSurfacePropertyType"/>
+          <element minOccurs="0" name="lod1iMS" type="igml:iMultiSurfacePropertyType"/>
+          <element minOccurs="0" name="lod2iMS" type="igml:iMultiSurfacePropertyType"/>
+          <element minOccurs="0" name="lod3iMS" type="igml:iMultiSurfacePropertyType"/>
+          <element minOccurs="0" name="lod4iMS" type="igml:iMultiSurfacePropertyType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="iRoadPropertyType">
+    <sequence minOccurs="0">
+      <element ref="itin:iRoad"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+  </complexType>
+  <element name="iRoofSurface" substitutionGroup="itin:_iBoundarySurface" type="itin:iRoofSurfaceType"/>
+  <complexType name="iRoofSurfaceType">
+    <complexContent>
+      <extension base="itin:_iBoundarySurfaceType">
+        <sequence/>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="iRoofSurfacePropertyType">
+    <sequence minOccurs="0">
+      <element ref="itin:iRoofSurface"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+  </complexType>
+  <element name="iTINRelief" substitutionGroup="dem:TINRelief" type="itin:iTINReliefType">
+    <annotation>
+      <documentation>iTINRelief is the class for describing relief features as TINs in all LODs.</documentation>
+    </annotation>
+  </element>
+  <complexType name="iTINReliefType">
+    <complexContent>
+      <extension base="dem:TINReliefType">
+        <sequence>
+          <element minOccurs="0" name="lod0iTIN" type="igml:iTINPropertyType"/>
+          <element minOccurs="0" name="lod1iTIN" type="igml:iTINPropertyType"/>
+          <element minOccurs="0" name="lod2iTIN" type="igml:iTINPropertyType"/>
+          <element minOccurs="0" name="lod3iTIN" type="igml:iTINPropertyType"/>
+          <element minOccurs="0" name="lod4iTIN" type="igml:iTINPropertyType"/>
+          <element minOccurs="0" name="iExtent" type="igml:iPolygonSurfacePropertyType"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="iBreaklines" type="igml:iLinePropertyType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="iTINReliefPropertyType">
+    <sequence minOccurs="0">
+      <element ref="itin:iTINRelief"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+  </complexType>
+  <element name="iWallSurface" substitutionGroup="itin:_iBoundarySurface" type="itin:iWallSurfaceType"/>
+  <complexType name="iWallSurfaceType">
+    <complexContent>
+      <extension base="itin:_iBoundarySurfaceType">
+        <sequence/>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="iWallSurfacePropertyType">
+    <sequence minOccurs="0">
+      <element ref="itin:iWallSurface"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+  </complexType>
+  <element name="iWaterBody" substitutionGroup="wtr:WaterBody" type="itin:iWaterBodyType">
+    <annotation>
+      <documentation>iWaterBody is the class for water bodies in all LODs.</documentation>
+    </annotation>
+  </element>
+  <complexType name="iWaterBodyType">
+    <complexContent>
+      <extension base="wtr:WaterBodyType">
+        <sequence>
+          <element minOccurs="0" name="lod0iTIN" type="igml:iTINPropertyType"/>
+          <element minOccurs="0" name="lod1iTIN" type="igml:iTINPropertyType"/>
+          <element minOccurs="0" name="lod2iTIN" type="igml:iTINPropertyType"/>
+          <element minOccurs="0" name="lod3iTIN" type="igml:iTINPropertyType"/>
+          <element minOccurs="0" name="lod4iTIN" type="igml:iTINPropertyType"/>
+          <element minOccurs="0" name="lod0iMS" type="igml:iMultiSurfacePropertyType"/>
+          <element minOccurs="0" name="lod1iMS" type="igml:iMultiSurfacePropertyType"/>
+          <element minOccurs="0" name="lod2iMS" type="igml:iMultiSurfacePropertyType"/>
+          <element minOccurs="0" name="lod3iMS" type="igml:iMultiSurfacePropertyType"/>
+          <element minOccurs="0" name="lod4iMS" type="igml:iMultiSurfacePropertyType"/>
+          <element minOccurs="0" name="lod0iPS" type="igml:iPolygonSurfacePropertyType"/>
+          <element minOccurs="0" name="lod1iPS" type="igml:iPolygonSurfacePropertyType"/>
+          <element minOccurs="0" name="lod2iPS" type="igml:iPolygonSurfacePropertyType"/>
+          <element minOccurs="0" name="lod3iPS" type="igml:iPolygonSurfacePropertyType"/>
+          <element minOccurs="0" name="lod4iPS" type="igml:iPolygonSurfacePropertyType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="iWaterBodyPropertyType">
+    <sequence minOccurs="0">
+      <element ref="itin:iWaterBody"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+  </complexType>
+  <element name="iWindow" substitutionGroup="itin:_iOpening" type="itin:iWindowType">
+    <annotation>
+      <documentation>Type for windows in iBoundarySurface(s).</documentation>
+    </annotation>
+  </element>
+  <complexType name="iWindowType">
+    <complexContent>
+      <extension base="itin:_iOpeningType">
+        <sequence/>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="iWindowPropertyType">
+    <sequence minOccurs="0">
+      <element ref="itin:iWindow"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+  </complexType>
+</schema>
