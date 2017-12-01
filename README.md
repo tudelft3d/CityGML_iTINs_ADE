@@ -10,7 +10,7 @@ While the international 3D GIS standard CityGML supports the storage of TINs, th
 
 Three existing compact TIN data structures, namely Indexed triangles, TriStrips, and Stars are introduced as new geometry types in GML geometry model for representing TINs. These new geometry types are extended to CityGML as an ADE (Application Domain Extension) for compactly representing massive TIN terrains.
 
-Our approach allows to explicitly store the topological relationships of a TIN model. Experiments with massive real-world terrains show that it enables to compress up to a factor of ∼29 with 1 billion+ triangles.
+Our approach allows to explicitly store the topological relationships of a TIN model. Experiments with massive real-world terrains show that it enables to compress up to a factor of ∼20 with 1 billion+ triangles.
 
 # XML Schemas
 
